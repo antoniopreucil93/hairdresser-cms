@@ -1,0 +1,168 @@
+<app-navigation></app-navigation>
+<main class="login-form">
+    <div *ngIf="isDataLoaded" style="margin: 2.5%;">
+                <div class="card">
+                    <div class="card-header">Frizerski Salon</div>
+                    <div class="card-body">
+                        <form [formGroup]="formGroupObject">
+                                <div>
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">Korisničko ime</label>
+                                    <div>
+                                        <input type="text" class="form-control" name="name" formControlName="name"
+                                        >
+                                    </div>
+                                    <div>
+                                        <div class="alert alert-warning" *ngIf="name.dirty && name.errors !== null && name.errors['required']">
+                                            Nazov salona je obavezan.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Lozinka</label>
+                                    <div>
+                                        <input type="description" class="form-control" name="description" formControlName="description">
+                                    </div>
+                                    <div>
+                                        <div class="alert alert-warning" *ngIf="description.dirty && description.errors !== null && description.errors['required']">
+                                            Opis objekta je obavezan.
+                                        </div>
+                                    </div>
+                                </div>
+                            <div>
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">Ime</label>
+                                <div>
+                                    <input type="text" class="form-control" name="phone" formControlName="phone"
+                                        >
+                                </div>
+                                <div>
+                                    <div class="alert alert-warning" *ngIf="phone.dirty && phone.errors !== null && phone.errors['required']">
+                                        Broj mobitela je obavezan.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">Adresa</label>
+                                <div>
+                                    <input type="text" class="form-control" name="address" formControlName="address"
+                                        >
+                                </div>
+                                <div>
+                                    <div class="alert alert-warning" *ngIf="address.dirty && address.errors !== null && address.errors['required']">
+                                        Adresa je obavezna.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">Broj mobitela</label>
+                                <div>
+                                    <input type="text" class="form-control" name="city" formControlName="city"
+                                        >
+                                </div>
+                                <div>
+                                    <div class="alert alert-warning" *ngIf="city.dirty && city.errors !== null && city.errors['required']">
+                                        Grad je obavezan.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col text-center" style="margin-top: 1%;">
+                                <button (click)="editHairSalon()" type="submit" class="btn btn-primary">
+                                    Uredi
+                                </button>
+                            </div>
+                        </form>
+            </div>
+        </div>
+        <div>
+            <form>
+                <div>
+                    <button type="button" class="btn btn-primary m-3" (click)="add(addEditForm)">Dodaj</button>
+                </div>
+              </form>
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Naziv </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="price">
+                  <th mat-header-cell *matHeaderCellDef> Cijena </th>
+                  <td mat-cell *matCellDef="let element"> {{element.price}} kn</td>
+                </ng-container>
+
+                <ng-container matColumnDef="duration">
+                    <th mat-header-cell *matHeaderCellDef> Trajanje </th>
+                    <td mat-cell *matCellDef="let element"> {{element.durationInMinutes}} min</td>
+                  </ng-container>
+    
+                <ng-container matColumnDef="createdAt">
+                  <th mat-header-cell *matHeaderCellDef> Datum kreiranja </th>
+                  <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="remove">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element"><button type="button" class="btn btn-danger btn-sm ml-1" (click)="remove(element.id)">Izbriši</button></td>
+                  </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </div>
+    </div>
+</main>
+
+
+<ng-template #addEditForm let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Usluga</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close('cancel')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formGroupService">
+            <div class="form-group">
+                <label for="lang-name">Naziv Usluge</label>
+                <div class="input-group">
+                    <input id="lang-name" class="form-control" name="serviceName" formControlName="serviceName">
+                </div>
+                <div>
+                    <div class="alert alert-warning" *ngIf="serviceName.dirty && serviceName.errors !== null && serviceName.errors['required']">
+                        Naziv je obavezan
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lang-name">Cijena</label>
+                <div class="input-group">
+                    <input type="number" id="lang-name" class="form-control" name="price" formControlName="price">
+                </div>
+                <div>
+                    <div class="alert alert-warning" *ngIf="price.dirty && price.errors !== null && price.errors['required']">
+                        Cijena je obavezna.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lang-name">Trajanje u minutama</label>
+                <div class="input-group">
+                    <input type="number" id="lang-name" class="form-control" name="durationInMinutes" formControlName="durationInMinutes">
+                </div>
+                <div>
+                    <div class="alert alert-warning" *ngIf="durationInMinutes.dirty && durationInMinutes.errors !== null && durationInMinutes.errors['required']">
+                        Trajanje je obavezno.
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('cancel')">Cancel</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('save')">Save</button>
+    </div>
+  </ng-template>

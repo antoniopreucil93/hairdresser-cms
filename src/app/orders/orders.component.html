@@ -1,0 +1,52 @@
+<app-navigation></app-navigation>
+<div class="container" *ngIf="isLoaded" style="margin-top: 5%;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hairSalonName">
+        <th mat-header-cell *matHeaderCellDef> Naziv Salona </th>
+        <td mat-cell *matCellDef="let element"> {{element.hairSalonName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="serviceName">
+        <th mat-header-cell *matHeaderCellDef> Usluga </th>
+        <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Korisničko ime </th>
+        <td mat-cell *matCellDef="let element"> {{element.username}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="datetime">
+        <th mat-header-cell *matHeaderCellDef> Vrijeme </th>
+        <td mat-cell *matCellDef="let element"> {{element.datetime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cancel">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"><button type="button" class="btn btn-danger btn-sm ml-1" (click)="cancel(element.id)">Odbij</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="confirm">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"><button type="button" class="btn btn-success btn-sm ml-1" (click)="confirm(element.id)">Potvrdi</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="finish">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"><button type="button" class="btn btn-success btn-sm ml-1" (click)="finish(element.id)">Završi</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

@@ -1,0 +1,29 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" *ngIf="role === 3">
+            <a class="nav-link" routerLink="/dashboard">Početna</a>
+          </li>
+          <li class="nav-item" *ngIf="role === 1">
+            <a class="nav-link" routerLink="/hair-salons">Frizerski Saloni</a>
+          </li>
+          <li class="nav-item" *ngIf="role === 1">
+            <a class="nav-link" routerLink="/hairdressers">Frizeri</a>
+          </li>
+          <li class="nav-item" *ngIf="role === 2">
+            <a class="nav-link" routerLink="/hair-salon-details">Frizerski Salon</a>
+          </li>
+          <li class="nav-item" *ngIf="role === 2">
+            <a class="nav-link" routerLink="/orders">Narudžbe</a>
+          </li>
+          <li class="nav-item" *ngIf="role === 3">
+            <a class="nav-link" routerLink="/my-orders">Moji Termini</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Odjavi se</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>

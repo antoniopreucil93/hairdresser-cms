@@ -1,0 +1,11 @@
+<app-navigation></app-navigation>
+<mat-grid-list  cols="3" rowHeight="2:1" style="background-color: aliceblue; color:white">
+    <mat-grid-tile *ngFor="let hairSalon of hairSalons" >
+        <div>
+            <h2 routerLink="/hair-salon-profile/{{hairSalon.id}}">{{hairSalon.name}}</h2>
+            <div>
+                <h3>{{hairSalon.address}}</h3>
+            </div>
+        </div>
+    </mat-grid-tile>
+  </mat-grid-list>

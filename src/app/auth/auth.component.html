@@ -1,0 +1,177 @@
+
+    <mat-tab-group style="text-align: center;" dynamicHeight>
+        <mat-tab label="Login">
+            <main class="login-form" style="margin-top: 5%;">
+                <div class="cotainer">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 col-md-8 col-lg-6">
+                            <div class="card">
+                                <div class="card-header">Prijava</div>
+                                <div class="card-body">
+                                    <form [formGroup]="formGroupLogin">
+                                        <div class="form-group row">
+                                            <label for="email_address" class="col-md-4 col-form-label text-md-right">Korisničko ime</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="username" formControlName="username"
+                                                    autofocus>
+                                            </div>
+                                            <div>
+                                                <div class="alert alert-warning" *ngIf="username.dirty && username.errors !== null && username.errors['required']">
+                                                    username is required.
+                                                </div>
+                                                <div class="alert alert-warning" *ngIf="username.dirty && username.errors !== null && username.errors['email']">
+                                                    username must be email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="password" class="col-md-4 col-form-label text-md-right">Lozinka</label>
+                                            <div class="col-md-6">
+                                                <input type="password" class="form-control" name="password" formControlName="password">
+                                            </div>
+                                            <div>
+                                                <div class="alert alert-warning" *ngIf="password.dirty && password.errors !== null && password.errors['required']">
+                                                    password is required.
+                                                </div>
+                                                <div class="alert alert-warning" *ngIf="password.errors !== null && password.errors['minlength']">
+                                                    password must have more than 5 characters..
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 offset-md-4">
+                                            <button (click)="login()" type="submit" class="btn btn-primary">
+                                                Login
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </mat-tab>
+        <mat-tab label="Registration">
+            <main class="login-form" style="margin-top: 5%;">
+                <div class="cotainer">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 col-md-8 col-lg-6">
+                            <div class="card">
+                                <div class="card-header">Registracija</div>
+                                <div class="card-body">
+                                    <form [formGroup]="formGroupRegistration">
+                                            <div>
+                                                <label for="email_address" class="col-md-4 col-form-label text-md-right">Korisničko ime</label>
+                                                <div>
+                                                    <input type="text" class="form-control" name="usernamereg" formControlName="usernamereg"
+                                                        autofocus>
+                                                </div>
+                                                <div>
+                                                    <div class="alert alert-warning" *ngIf="usernamereg.dirty && usernamereg.errors !== null && usernamereg.errors['required']">
+                                                        username is required.
+                                                    </div>
+                                                    <div class="alert alert-warning" *ngIf="usernamereg.dirty && usernamereg.errors !== null && usernamereg.errors['email']">
+                                                        username must be email.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label for="password" class="col-md-4 col-form-label text-md-right">Lozinka</label>
+                                                <div>
+                                                    <input type="password" class="form-control" name="passwordreg" formControlName="passwordreg">
+                                                </div>
+                                                <div>
+                                                    <div class="alert alert-warning" *ngIf="passwordreg.dirty && passwordreg.errors !== null && passwordreg.errors['required']">
+                                                        password is required.
+                                                    </div>
+                                                    <div class="alert alert-warning" *ngIf="passwordreg.errors !== null && passwordreg.errors['minlength']">
+                                                        password must have more than 5 characters..
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="lang-name" class="col-md-4 col-form-label text-md-right">Roles</label>
+                                            <select class="form-control form-control-lg" formControlName="role">
+                                                <option value="2">ADMIN</option>
+                                                <option value="3">USER</option>
+                                              </select>
+                                              <div>
+                                                <div class="alert alert-warning" *ngIf="role.dirty && role.errors !== null && role.errors['required']">
+                                                    role is required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="email_address" class="col-md-4 col-form-label text-md-right">Ime</label>
+                                            <div>
+                                                <input type="text" class="form-control" name="firstName" formControlName="firstName"
+                                                    autofocus>
+                                            </div>
+                                            <div>
+                                                <div class="alert alert-warning" *ngIf="firstName.dirty && firstName.errors !== null && firstName.errors['required']">
+                                                    firstName is required.
+                                                </div>
+                                                <div class="alert alert-warning" *ngIf="firstName.dirty && firstName.errors !== null && firstName.errors['email']">
+                                                    firstName must be email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div >
+                                            <label for="email_address" class="col-md-4 col-form-label text-md-right">Prezime</label>
+                                            <div>
+                                                <input type="text" class="form-control" name="lastName" formControlName="lastName"
+                                                    autofocus>
+                                            </div>
+                                            <div>
+                                                <div class="alert alert-warning" *ngIf="lastName.dirty && lastName.errors !== null && lastName.errors['required']">
+                                                    lastName is required.
+                                                </div>
+                                                <div class="alert alert-warning" *ngIf="lastName.dirty && lastName.errors !== null && lastName.errors['email']">
+                                                    lastName must be email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="email_address" class="col-md-4 col-form-label text-md-right">Adresa</label>
+                                            <div>
+                                                <input type="text" class="form-control" name="address" formControlName="address"
+                                                    autofocus>
+                                            </div>
+                                            <div>
+                                                <div class="alert alert-warning" *ngIf="address.dirty && address.errors !== null && address.errors['required']">
+                                                    address is required.
+                                                </div>
+                                                <div class="alert alert-warning" *ngIf="address.dirty && address.errors !== null && address.errors['email']">
+                                                    address must be email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="email_address" class="col-md-4 col-form-label text-md-right">Broj mobitela</label>
+                                            <div>
+                                                <input type="text" class="form-control" name="phone" formControlName="phone"
+                                                    autofocus>
+                                            </div>
+                                            <div>
+                                                <div class="alert alert-warning" *ngIf="phone.dirty && phone.errors !== null && phone.errors['required']">
+                                                    address is required.
+                                                </div>
+                                                <div class="alert alert-warning" *ngIf="phone.dirty && phone.errors !== null && phone.errors['email']">
+                                                    address must be email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 offset-md-4">
+                                            <button (click)="register()" type="submit" class="btn btn-primary">
+                                                Register
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </mat-tab>
+      </mat-tab-group>
